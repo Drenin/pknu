@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>반응속도테스트</title>
+    <style tpye = "text/css">
+
+
+        tstyle{
+            color:#000000;
+            font-family:휴먼굵은샘체;
+            font-size:20px;
+
+        }
+      #screen {
+        width: 400px;
+        height: 300px;
+        text-align: center;
+        user-select: none;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      #screen.waiting {
+        background: skyblue;
+      }
+
+      #screen.ready {
+        background: pink;
+      }
+
+      #screen.go {
+        background: greenyellow;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <tstyle>
+        <ul>
+            <h2>반응속도 테스트입니다.</h2>
+            <li>3번의 게임후에 평균 반응속도를 알려드립니다.</li>
+            <li>녹색화면이 되면 화면을 클릭하세요!</li>
+            <li>분홍화면에 클릭하시면 결과에 기록되지 않습니다.</li>
+        </ul>
+    </tstyle>
+
+    <div id="screen" class="waiting">클릭하면 시작합니다.</div>
+    <div id="show"></div>
+
+    <script>
+      const screen = document.querySelector('#screen');
+      let start;
+      let end;
+      let count = 0;
+      let score = [];
+      let sum = 0;
+      let averageScore = 0;
+      let timer;
+
+      screen.addEventListener('click', function() {
+        if (screen.classList.contains('waiting')) {
+          screen.classList.remove('waiting');
+          screen.classList.add('ready');
+          screen.textContent = '녹색이 되면 누르세요.';
+
+          timer = setTimeout(function() {
+            start = new Date();
+            screen.click();
+          }, Math.floor(Math.random() * 1000) + 2000);
+        } else if (screen.classList.contains('ready')) {
+          if (!start) {
+            clearTimeout(timer);
+            screen.classList.remove('ready');
+            screen.classList.add('waiting');
+            screen.textContent = '너무 일찍 눌렀어요! 다시 시작하세요.';
+
+          } else {
+            screen.classList.remove('ready');
+            screen.classList.add('go');
+            screen.textContent = '누르세요!';
+          }
+        } else if (screen.classList.contains('go')) {
+          end = new Date();
+          result = (end - start) / 1000
+          console.log(result + '초');
+          count += 1;
+          score.push(result);
+
+          screen.classList.remove('go');
+          screen.classList.add('waiting');
+          screen.textContent = '클릭하면 시작합니다.';
+
+          start = null;
+          end = null;
+
+        }
+        if (count >= 3) {
+          for (let i = 0; i < score.length; i++) {
+            sum = sum + score[i]
+          }
+          averageScore = sum / score.length;
+          console.log(count, score, sum, averageScore);
+          alert(`당신의 평균 속도는 ${averageScore.toFixed(2)} 입니다.`);
+
+          setTimeout(function() {
+            backtoBegin();
+          }, 1);
+        }
+
+        function backtoBegin() {
+          count = 0;
+          document.querySelector('#show').textContent = '';
+        }
+      });
+
+    </script>
+  </body>
+
+</html>

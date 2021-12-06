@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>question</title>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		function checkbox(){
+			var a = document.getElementById('box').value;
+			if (a=="표준편차") {
+				location.href = "Quiz.html"
+                alert("축하합니다. 퀴즈 끝!")
+			}else{
+				alert("오답입니다. 정답은 '표준편차'입니다.")
+			}
+		}
+	</script>
+	<h1>문제3. 정규 분포의 형태와 위치는 평균과 ㅁㅁㅁㅁ가 결정한다.</h1>
+	<input id="box" type="box">
+	<input type="button" name="enter" onclick="checkbox()" value="확인">
+</body>
+</html>

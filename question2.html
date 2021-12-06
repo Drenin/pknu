@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>question</title>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		function checkbox(){
+			var a = document.getElementById('box').value;
+			if (a=="1") {
+				location.href = "question3.html"
+			}else{
+				alert("오답입니다. 정답은 '1'입니다.")
+			}
+		}
+	</script>
+	<h1>문제2. 정규곡선 밑의 면적은 ㅁ이다.</h1>
+	<input id="box" type="box">
+	<input type="button" name="enter" onclick="checkbox()" value="확인">
+</body>
+</html>

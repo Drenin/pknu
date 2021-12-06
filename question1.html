@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>question</title>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		function checkbox(){
+			var a = document.getElementById('box').value;
+			if (a=="표본공간") {
+				location.href = "question2.html"
+			}else{
+				alert("오답입니다. 정답은 '표본공간'입니다.")
+			}
+		}
+	</script>
+	<h1>문제1. 실험을 통해 발생 가능한 모든 결과들을 모아 둔 집합을 ㅁㅁㅁㅁ이라 한다.</h1>
+	<input id="box" type="box">
+	<input type="button" name="enter" onclick="checkbox()" value="확인">
+</body>
+</html>
